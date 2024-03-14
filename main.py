@@ -23,7 +23,6 @@ while running:
 
     # RENDER YOUR GAME HERE
     mSnake.addHead()
-    print(mSnake.body)
     for s in mSnake.body[1:]:
         pygame.draw.rect(screen, bodyColor, pygame.Rect(s[0]*40, s[1]*40, 40, 40))
     head = mSnake.getHead()
