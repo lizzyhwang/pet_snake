@@ -4,10 +4,12 @@ from snake import Snake
 
 # pygame setup
 pygame.init()
-screen = pygame.display.set_mode((720, 720))
+mWindowSize = 720
+screen = pygame.display.set_mode((mWindowSize, mWindowSize))
 clock = pygame.time.Clock()
 running = True
-mSnake = Snake()
+mTileSize = 40
+mSnake = Snake(mTileSize, mWindowSize)
 headColor = (255,62,184)
 bodyColor = (0,0,0)
 
@@ -24,9 +26,9 @@ while running:
     # RENDER YOUR GAME HERE
     mSnake.addHead()
     for s in mSnake.body[1:]:
-        pygame.draw.rect(screen, bodyColor, pygame.Rect(s[0]*40, s[1]*40, 40, 40))
+        pygame.draw.rect(screen, bodyColor, pygame.Rect(s[0]*mTileSize, s[1]*mTileSize, mTileSize, mTileSize))
     head = mSnake.getHead()
-    pygame.draw.rect(screen,headColor,pygame.Rect(head[0]*40, head[1]*40, 40, 40))
+    pygame.draw.rect(screen,headColor,pygame.Rect(head[0]*mTileSize, head[1]*mTileSize, mTileSize, mTileSize))
 
     # flip() the display to put your work on screen
     pygame.display.flip()

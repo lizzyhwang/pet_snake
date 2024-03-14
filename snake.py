@@ -8,9 +8,10 @@ class Snake:
     # the map is set to 720 x 720 px
     # each tile is 40 x 40 px, which means the grid is 18 x 18.
 
-    # initialize body
+    # initialize attributes
     body = []
-    def __init__(self) -> None:
+    numTiles = 0
+    def __init__(self, ts, ws) -> None:
         # X X X X
         #       X
         #   X X X
@@ -19,6 +20,7 @@ class Snake:
         self.body = [
             (3,4),(4,4),(5,4),(6,4),(6,5),(6,6),(5,6),(4,6),(4,7),(4,8),(5,8),(6,8),(7,8),(8,8),(9,8),(10,8)
         ]
+        self.numTiles = ws/ts
 
     # returns the body segment at the given index -> (x,y)
     def getSegment(self, idx: int):
@@ -48,7 +50,7 @@ class Snake:
             # remove if it would be out of bounds.
             pX = p[0]
             pY = p[1]
-            if pX < 0 or pX > 17 or pY < 0 or pY > 17:
+            if pX < 0 or pX >= self.numTiles or pY < 0 or pY >= self.numTiles:
                 toRemove.append(p)
         # remove the bad moves from the list of moves
         for s in toRemove:
